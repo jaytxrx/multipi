@@ -1,0 +1,25 @@
+MULTIPI - Multi Core examples for Raspberry Pi 2
+------------------------------------------------
+
+Raspberry Pi 2 board comes with a quad core Cortex-A7 controller. This is a really good board to learn multi core programming.
+
+
+Folders
+-------
+
+Example_00 - This is just a blink LED example by Core 0. Move ahead to next examples!
+
+Example_01 - Each core blinks its corresponding LED.
+
+Example_02 - 4 Cores blinks the ACT_OK LED one after the other. Count of the blink represents which core is blinking the LED. Core 0 will blink the LED 1 time then Core 1 will blink the LED 2 times and so on..
+
+Example_03 - Core 1,2,3 tries to write in a same RAM location. Core 0 monitors who won in writing and blinks the ACT_OK LED based on it. Also Core 0 sends the data via UART.
+
+Building the examples
+---------------------
+
+Download the toolchain from https://launchpad.net/gcc-arm-embedded
+
+make clean
+make
+

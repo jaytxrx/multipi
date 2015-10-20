@@ -1,0 +1,16 @@
+Following pins are required to access JTAG
+
+All these signals can be accessed in the Alternate Function 4 (except VCC and GND)
+
+JTAG signal | RPi GPIO
+----------------------
+ TRST       | GPIO22
+ TDI        | GPIO26
+ TMS        | GPIO27
+ TCK        | GPIO25
+ TDO        | GPIO24
+ 
+ --DON'T CONNECT TO 5V SINCE RASPBERRY PI IS 3.3V--
+ 
+ VREF  Pin1(3.3 V) of the header
+ GND   Pin 39 of the header

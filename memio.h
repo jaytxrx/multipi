@@ -1,8 +1,16 @@
 #ifndef MEMIO_H
 #define MEMIO_H
 
+#include "lib.h"
+
 //Raspberry Pi 2 IO base address
-#define ARM_IO_BASE		0x3F000000
+#if(RPI == RPI2) 
+	#define ARM_IO_BASE		0x3F000000
+#elif(RPI == RPI1)
+	#define ARM_IO_BASE		0x20000000
+#else
+    #error "Please define Raspberry Pi version"
+#endif
 
 //
 // General Purpose I/O
@@ -27,7 +35,5 @@
 #define ARM_GPIO_GPAFEN0	 (*(volatile uint32_t *)(ARM_GPIO_BASE + 0x88))
 #define ARM_GPIO_GPPUD           (*(volatile uint32_t *)(ARM_GPIO_BASE + 0x94))
 #define ARM_GPIO_GPPUDCLK0       (*(volatile uint32_t *)(ARM_GPIO_BASE + 0x98))
-
-
 
 #endif //MEMIO_H

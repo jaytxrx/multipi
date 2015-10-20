@@ -3,7 +3,11 @@
 
 #include "memio.h"
 
+#define RPI1 1
+#define RPI2 2
+
 #define CORE_MASK 3
+
 #define CORE0 0
 #define CORE1 1
 #define CORE2 2

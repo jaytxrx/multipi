@@ -1,0 +1,14 @@
+Note: This is not a tutorial! 
+
+These are files required to be pasted in the SD card for the Examples to run.
+
+Its not enough that the kernel.img file is copied into the SD card for the
+Raspberry Pi to work. Following files are also required to be placed in the SD
+card
+
+https://github.com/raspberrypi/firmware/blob/master/boot/bootcode.bin
+https://github.com/raspberrypi/firmware/blob/master/boot/start.elf
+https://github.com/raspberrypi/firmware/blob/master/boot/fixup.dat
+
+Download the files from the above link and place them in the SD card.
+

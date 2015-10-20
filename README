@@ -7,6 +7,10 @@ Raspberry Pi 2 board comes with a quad core Cortex-A7 controller. This is a real
 Folders
 -------
 
+sd_card - Contains the files needed to be copied to your SD card along with the kernel.img file inside the example folders
+
+openocd_cfg - configuration files needed by OpenOCD to debug Raspberry Pi via JTAG
+
 Example_00 - This is just a blink LED example by Core 0. Move ahead to next examples!
 
 Example_01 - Each core blinks its corresponding LED.
@@ -18,8 +22,11 @@ Example_03 - Core 1,2,3 tries to write in a same RAM location. Core 0 monitors w
 Building the examples
 ---------------------
 
-Download the toolchain from https://launchpad.net/gcc-arm-embedded
+1) Download the toolchain from https://launchpad.net/gcc-arm-embedded
 
+2) Update PATH variable so that the Makefile can find the arm-gcc tools
+
+3) Run the below commands in shell
 make clean
 make
 

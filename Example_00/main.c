@@ -1,11 +1,19 @@
 #include <stdint.h>
 
+#define RPI RPI2
+
 #include "memio.h"
 #include "lib.h"
+
+#if(RPI == RPI1)
+	#error "Example works only for Raspberry Pi 2"
+#endif
 
 void main(void) __attribute__((naked));
 void main(void)
 {
+  //enable_JTAG();
+    
   ENABLE_ACT_LED();
 
   volatile uint32_t i;

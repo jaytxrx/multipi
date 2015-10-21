@@ -28,6 +28,20 @@ void core2_main(void) __attribute__((naked));
 
 void core0_submain(void) __attribute__((naked));
 
+/*****************************************/
+#define STACK_SIZE 1024
+
+/*stack for each core*/
+uint32_t core1ram[STACK_SIZE];
+uint32_t core2ram[STACK_SIZE];
+uint32_t core3ram[STACK_SIZE];
+
+uint32_t *ram1 = core1ram;
+uint32_t *ram2 = core2ram;
+uint32_t *ram3 = core3ram;
+
+/*****************************************/
+
 void main(void)
 {
     enable_JTAG();
@@ -62,6 +76,8 @@ void core0_submain(void)
 
 void core1_main(void)
 {
+    asm volatile ("mov sp,%0" : :"r" (ram1));
+    
     volatile uint32_t i;
     
     while(1)
@@ -75,6 +91,8 @@ void core1_main(void)
 
 void core2_main(void)
 {
+    asm volatile ("mov sp,%0" : :"r" (ram2));
+    
     volatile uint32_t i;
     
     while(1)
@@ -88,6 +106,8 @@ void core2_main(void)
 
 void core3_main(void)
 {
+    asm volatile ("mov sp,%0" : :"r" (ram3));
+    
     volatile uint32_t i;
     
     while(1)

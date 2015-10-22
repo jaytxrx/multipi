@@ -37,7 +37,7 @@ void main(void)
 {
     //enable_JTAG();
     
-    asm volatile ("mov sp,#32768");
+    asm volatile ("mov sp,#32768"); //32768 == 0x8000
 
     ENABLE_ACT_LED();
     

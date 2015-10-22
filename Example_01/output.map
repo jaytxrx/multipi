@@ -1,0 +1,120 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+j                   0x4               main.o
+l                   0x4               main.o
+k                   0x4               main.o
+i                   0x4               main.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+ram              0x00008000         0x00005000
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD main.o
+LOAD lib.o
+LOAD start.o
+
+.text           0x00008000      0x5d8
+ *(.text*)
+ .text          0x00008000      0x3f4 main.o
+                0x00008000                main
+                0x0000809c                core0_submain
+                0x00008178                core1_main
+                0x0000824c                core2_main
+                0x00008320                core3_main
+ .text          0x000083f4      0x1d8 lib.o
+                0x000083f4                get_core_number
+                0x00008420                start_core1
+                0x0000844c                start_core2
+                0x00008478                start_core3
+                0x000084a4                load32
+                0x000084cc                store32
+                0x000084f8                uart_init
+                0x0000850c                enable_JTAG
+ .text          0x000085cc        0xc start.o
+                0x000085cc                _start
+
+.data           0x000085d8        0x0
+ .data          0x000085d8        0x0 main.o
+ .data          0x000085d8        0x0 lib.o
+ .data          0x000085d8        0x0 start.o
+
+.igot.plt       0x000085d8        0x0
+ .igot.plt      0x00000000        0x0 main.o
+
+.glue_7         0x000085d8        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x000085d8        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x000085d8        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x000085d8        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x000085d8        0x0
+ .iplt          0x00000000        0x0 main.o
+
+.rel.dyn        0x000085d8        0x0
+ .rel.iplt      0x00000000        0x0 main.o
+
+.bss            0x000085d8       0x10
+ *(.bss*)
+ .bss           0x000085d8        0x0 main.o
+ .bss           0x000085d8        0x0 lib.o
+ .bss           0x000085d8        0x0 start.o
+ COMMON         0x000085d8       0x10 main.o
+                0x000085d8                j
+                0x000085dc                l
+                0x000085e0                k
+                0x000085e4                i
+OUTPUT(output.elf elf32-littlearm)
+
+.debug_info     0x00000000      0x2b3
+ .debug_info    0x00000000      0x10d main.o
+ .debug_info    0x0000010d      0x1a6 lib.o
+
+.debug_abbrev   0x00000000      0x162
+ .debug_abbrev  0x00000000       0x7f main.o
+ .debug_abbrev  0x0000007f       0xe3 lib.o
+
+.debug_aranges  0x00000000       0x40
+ .debug_aranges
+                0x00000000       0x20 main.o
+ .debug_aranges
+                0x00000020       0x20 lib.o
+
+.debug_line     0x00000000      0x1dc
+ .debug_line    0x00000000      0x11e main.o
+ .debug_line    0x0000011e       0xbe lib.o
+
+.debug_str      0x00000000      0x1d6
+ .debug_str     0x00000000      0x158 main.o
+                                0x191 (size before relaxing)
+ .debug_str     0x00000158       0x7e lib.o
+                                0x1d4 (size before relaxing)
+
+.comment        0x00000000       0x70
+ .comment       0x00000000       0x70 main.o
+                                 0x71 (size before relaxing)
+ .comment       0x00000000       0x71 lib.o
+
+.ARM.attributes
+                0x00000000       0x33
+ .ARM.attributes
+                0x00000000       0x35 main.o
+ .ARM.attributes
+                0x00000035       0x35 lib.o
+ .ARM.attributes
+                0x0000006a       0x14 start.o
+
+.debug_frame    0x00000000      0x178
+ .debug_frame   0x00000000       0x68 main.o
+ .debug_frame   0x00000068      0x110 lib.o

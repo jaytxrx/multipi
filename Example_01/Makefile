@@ -1,6 +1,6 @@
 ARMGNU = arm-none-eabi
 
-CFLAGS = -Wall -Werror -O0 -nostdlib -nostartfiles -ffreestanding -mfpu=neon-vfpv4 -mfloat-abi=hard -march=armv7-a -mtune=cortex-a7 -g -c
+CFLAGS = -Wall -Werror -O2 -nostdlib -nostartfiles -ffreestanding -mfpu=neon-vfpv4 -mfloat-abi=hard -march=armv7-a -mtune=cortex-a7 -g -c
 
 INC = -I ../
 
@@ -16,7 +16,7 @@ lib.o : ../lib.c
 	$(ARMGNU)-gcc $(CFLAGS) $(INC) ../lib.c -o lib.o
 
 output.elf: main.o lib.o start.o
-	$(ARMGNU)-ld main.o lib.o start.o -T ../linker.ld -Map output.map -o output.elf
+	$(ARMGNU)-ld start.o main.o lib.o -T ../linker.ld -Map output.map -o output.elf
 
 kernel.img: output.elf
 	$(ARMGNU)-objcopy output.elf -O binary kernel.img

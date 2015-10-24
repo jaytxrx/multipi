@@ -15,106 +15,113 @@ ram              0x00008000         0x00005000
 
 Linker script and memory map
 
+LOAD start.o
 LOAD main.o
 LOAD lib.o
-LOAD start.o
 
-.text           0x00008000      0x5d8
+.text           0x00008000      0x378
  *(.text*)
- .text          0x00008000      0x3f4 main.o
-                0x00008000                main
-                0x0000809c                core0_submain
-                0x00008178                core1_main
-                0x0000824c                core2_main
-                0x00008320                core3_main
- .text          0x000083f4      0x1d8 lib.o
-                0x000083f4                get_core_number
-                0x00008420                start_core1
-                0x0000844c                start_core2
-                0x00008478                start_core3
-                0x000084a4                load32
-                0x000084cc                store32
-                0x000084f8                uart_init
-                0x0000850c                enable_JTAG
- .text          0x000085cc        0xc start.o
-                0x000085cc                _start
+ .text          0x00008000        0xc start.o
+                0x00008000                _start
+ .text          0x0000800c      0x220 main.o
+                0x0000800c                core1_main
+                0x00008094                core2_main
+                0x0000811c                core3_main
+                0x000081a4                core0_submain
+ .text.startup  0x0000822c       0x64 main.o
+                0x0000822c                main
+ .text          0x00008290       0xe8 lib.o
+                0x00008290                get_core_number
+                0x0000829c                start_core1
+                0x000082a8                start_core2
+                0x000082b4                start_core3
+                0x000082c0                load32
+                0x000082c8                store32
+                0x000082d0                uart_init
+                0x000082d4                enable_JTAG
 
-.data           0x000085d8        0x0
- .data          0x000085d8        0x0 main.o
- .data          0x000085d8        0x0 lib.o
- .data          0x000085d8        0x0 start.o
+.data           0x00008378        0x0
+ .data          0x00008378        0x0 start.o
+ .data          0x00008378        0x0 main.o
+ .data          0x00008378        0x0 lib.o
 
-.igot.plt       0x000085d8        0x0
- .igot.plt      0x00000000        0x0 main.o
+.igot.plt       0x00008378        0x0
+ .igot.plt      0x00000000        0x0 start.o
 
-.glue_7         0x000085d8        0x0
+.glue_7         0x00008378        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x000085d8        0x0
+.glue_7t        0x00008378        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x000085d8        0x0
+.vfp11_veneer   0x00008378        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x000085d8        0x0
+.v4_bx          0x00008378        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x000085d8        0x0
- .iplt          0x00000000        0x0 main.o
+.iplt           0x00008378        0x0
+ .iplt          0x00000000        0x0 start.o
 
-.rel.dyn        0x000085d8        0x0
- .rel.iplt      0x00000000        0x0 main.o
+.rel.dyn        0x00008378        0x0
+ .rel.iplt      0x00000000        0x0 start.o
 
-.bss            0x000085d8       0x10
+.bss            0x00008378       0x10
  *(.bss*)
- .bss           0x000085d8        0x0 main.o
- .bss           0x000085d8        0x0 lib.o
- .bss           0x000085d8        0x0 start.o
- COMMON         0x000085d8       0x10 main.o
-                0x000085d8                j
-                0x000085dc                l
-                0x000085e0                k
-                0x000085e4                i
+ .bss           0x00008378        0x0 start.o
+ .bss           0x00008378        0x0 main.o
+ .bss           0x00008378        0x0 lib.o
+ COMMON         0x00008378       0x10 main.o
+                0x00008378                j
+                0x0000837c                l
+                0x00008380                k
+                0x00008384                i
 OUTPUT(output.elf elf32-littlearm)
 
-.debug_info     0x00000000      0x2b3
- .debug_info    0x00000000      0x10d main.o
- .debug_info    0x0000010d      0x1a6 lib.o
-
-.debug_abbrev   0x00000000      0x162
- .debug_abbrev  0x00000000       0x7f main.o
- .debug_abbrev  0x0000007f       0xe3 lib.o
-
-.debug_aranges  0x00000000       0x40
- .debug_aranges
-                0x00000000       0x20 main.o
- .debug_aranges
-                0x00000020       0x20 lib.o
-
-.debug_line     0x00000000      0x1dc
- .debug_line    0x00000000      0x11e main.o
- .debug_line    0x0000011e       0xbe lib.o
-
-.debug_str      0x00000000      0x1d6
- .debug_str     0x00000000      0x158 main.o
-                                0x191 (size before relaxing)
- .debug_str     0x00000158       0x7e lib.o
-                                0x1d4 (size before relaxing)
+.ARM.attributes
+                0x00000000       0x31
+ .ARM.attributes
+                0x00000000       0x14 start.o
+ .ARM.attributes
+                0x00000014       0x35 main.o
+ .ARM.attributes
+                0x00000049       0x35 lib.o
 
 .comment        0x00000000       0x70
  .comment       0x00000000       0x70 main.o
                                  0x71 (size before relaxing)
  .comment       0x00000000       0x71 lib.o
 
-.ARM.attributes
-                0x00000000       0x33
- .ARM.attributes
-                0x00000000       0x35 main.o
- .ARM.attributes
-                0x00000035       0x35 lib.o
- .ARM.attributes
-                0x0000006a       0x14 start.o
+.debug_info     0x00000000      0x3ae
+ .debug_info    0x00000000      0x196 main.o
+ .debug_info    0x00000196      0x218 lib.o
 
-.debug_frame    0x00000000      0x178
- .debug_frame   0x00000000       0x68 main.o
- .debug_frame   0x00000068      0x110 lib.o
+.debug_abbrev   0x00000000      0x20b
+ .debug_abbrev  0x00000000       0xe0 main.o
+ .debug_abbrev  0x000000e0      0x12b lib.o
+
+.debug_aranges  0x00000000       0x48
+ .debug_aranges
+                0x00000000       0x28 main.o
+ .debug_aranges
+                0x00000028       0x20 lib.o
+
+.debug_ranges   0x00000000       0x18
+ .debug_ranges  0x00000000       0x18 main.o
+
+.debug_line     0x00000000      0x1ef
+ .debug_line    0x00000000      0x12a main.o
+ .debug_line    0x0000012a       0xc5 lib.o
+
+.debug_str      0x00000000      0x1d6
+ .debug_str     0x00000000      0x17c main.o
+                                0x1b5 (size before relaxing)
+ .debug_str     0x0000017c       0x5a lib.o
+                                0x1d4 (size before relaxing)
+
+.debug_frame    0x00000000       0xf8
+ .debug_frame   0x00000000       0x60 main.o
+ .debug_frame   0x00000060       0x98 lib.o
+
+.debug_loc      0x00000000       0x34
+ .debug_loc     0x00000000       0x34 lib.o

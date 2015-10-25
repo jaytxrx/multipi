@@ -1,0 +1,6 @@
+To do
+
+1) Get JTAG running so multi core debugging can be done
+2) Setup a mutex or semaphore for Example_01 multiple core register access issue
+3) Make Example_02 with support for mutex on Example_01
+4) finish the pending examples

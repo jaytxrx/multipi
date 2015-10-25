@@ -7,6 +7,11 @@ The pending one LED is the ACT LED(i.e the Green LED) on the Raspberry Pi PCB
 
 It recommeneded to connect the 3 LED's to breadboard and wore them accordingly to understand the example well. But if you don't have the additional 3 LED's, breadboard and wires, the ACT LED on the PCB would blink.
 
+####Video
+Before you try this, see the video - https://www.youtube.com/watch?v=lLHOH9A4hoU
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lLHOH9A4hoU" frameborder="0" allowfullscreen></iframe>
+
 ####Circuit Diagram
 3 LED's are connected via individual 330Ohm resistors to the ground.
 

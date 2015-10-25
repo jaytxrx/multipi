@@ -19,7 +19,7 @@ LOAD start.o
 LOAD main.o
 LOAD lib.o
 
-.text           0x00008000      0x378
+.text           0x00008000      0x374
  *(.text*)
  .text          0x00008000        0xc start.o
                 0x00008000                _start
@@ -28,54 +28,54 @@ LOAD lib.o
                 0x00008094                core2_main
                 0x0000811c                core3_main
                 0x000081a4                core0_submain
- .text.startup  0x0000822c       0x64 main.o
+ .text.startup  0x0000822c       0x60 main.o
                 0x0000822c                main
- .text          0x00008290       0xe8 lib.o
-                0x00008290                get_core_number
-                0x0000829c                start_core1
-                0x000082a8                start_core2
-                0x000082b4                start_core3
-                0x000082c0                load32
-                0x000082c8                store32
-                0x000082d0                uart_init
-                0x000082d4                enable_JTAG
+ .text          0x0000828c       0xe8 lib.o
+                0x0000828c                get_core_number
+                0x00008298                start_core1
+                0x000082a4                start_core2
+                0x000082b0                start_core3
+                0x000082bc                load32
+                0x000082c4                store32
+                0x000082cc                uart_init
+                0x000082d0                enable_JTAG
 
-.data           0x00008378        0x0
- .data          0x00008378        0x0 start.o
- .data          0x00008378        0x0 main.o
- .data          0x00008378        0x0 lib.o
+.data           0x00008374        0x0
+ .data          0x00008374        0x0 start.o
+ .data          0x00008374        0x0 main.o
+ .data          0x00008374        0x0 lib.o
 
-.igot.plt       0x00008378        0x0
+.igot.plt       0x00008374        0x0
  .igot.plt      0x00000000        0x0 start.o
 
-.glue_7         0x00008378        0x0
+.glue_7         0x00008374        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x00008378        0x0
+.glue_7t        0x00008374        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x00008378        0x0
+.vfp11_veneer   0x00008374        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x00008378        0x0
+.v4_bx          0x00008374        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x00008378        0x0
+.iplt           0x00008374        0x0
  .iplt          0x00000000        0x0 start.o
 
-.rel.dyn        0x00008378        0x0
+.rel.dyn        0x00008374        0x0
  .rel.iplt      0x00000000        0x0 start.o
 
-.bss            0x00008378       0x10
+.bss            0x00008374       0x10
  *(.bss*)
- .bss           0x00008378        0x0 start.o
- .bss           0x00008378        0x0 main.o
- .bss           0x00008378        0x0 lib.o
- COMMON         0x00008378       0x10 main.o
-                0x00008378                j
-                0x0000837c                l
-                0x00008380                k
-                0x00008384                i
+ .bss           0x00008374        0x0 start.o
+ .bss           0x00008374        0x0 main.o
+ .bss           0x00008374        0x0 lib.o
+ COMMON         0x00008374       0x10 main.o
+                0x00008374                j
+                0x00008378                l
+                0x0000837c                k
+                0x00008380                i
 OUTPUT(output.elf elf32-littlearm)
 
 .ARM.attributes
@@ -109,9 +109,9 @@ OUTPUT(output.elf elf32-littlearm)
 .debug_ranges   0x00000000       0x18
  .debug_ranges  0x00000000       0x18 main.o
 
-.debug_line     0x00000000      0x1ef
- .debug_line    0x00000000      0x12a main.o
- .debug_line    0x0000012a       0xc5 lib.o
+.debug_line     0x00000000      0x1e6
+ .debug_line    0x00000000      0x125 main.o
+ .debug_line    0x00000125       0xc1 lib.o
 
 .debug_str      0x00000000      0x1d6
  .debug_str     0x00000000      0x17c main.o
